@@ -23,7 +23,7 @@ void viderBuffer()
 long lire(char *chaine, int longueur)
 {
     char *positionEntree = NULL;
-    
+
     if (fgets(chaine, longueur, stdin) != NULL)
     {
         positionEntree = strchr(chaine, '\n');
