@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ecriture.h"
+#include "calcu.h"
 
 int main()
 {
-    char *pays[1] = {"FR"};
+    char pays[1][3] = {""};
 
     int poids = 0;
     int zone = 0;
@@ -19,15 +20,21 @@ int main()
     printf("----               International                   ----\n");
     printf("-------------------------------------------------------\n\n");
 
+    do
+    {
     printf("Code pays : ");
-    zone = calcZone();
+    lire(*pays, 3);
+    zone = calcZone(pays);
+    } while (zone <= -1);
+    
+    
+    printf("Zone %d\n", zone);
 
     printf("Nombre de colis : ");
     conv_nbrColis = lire(nbrColis, 3);
     poids = calcPoids(conv_nbrColis);
 
 
-    zone = calcZone(pays[0]);
 
 
     return 0;

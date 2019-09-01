@@ -9,7 +9,7 @@ int calcPoids(long nbrColis)
     double longu = 0, larg = 0, haut = 0, poidsVolume = 0, poidsReel = 0;
     do
     {
-        if(nbrColis > 1)
+        if (nbrColis > 1)
         {
             printf("\nColis %d\n", compteur);
         }
@@ -23,7 +23,7 @@ int calcPoids(long nbrColis)
         scanf("%lf", &poidsReel);
         compteur++;
         poidsVolume = (((longu/100.00)*(larg/100.00)*(haut/100.00))*166.00);
-        if(poidsReel < poidsVolume)
+        if (poidsReel < poidsVolume)
         {
             poids = poidsVolume + poids;
         }
@@ -31,17 +31,15 @@ int calcPoids(long nbrColis)
         {
             poids = poidsReel + poids;
         }
-    } while(nbrColis >= compteur);
+    } while (nbrColis >= compteur);
     return poids;
 }
 
-int calcZone()
+int calcZone(char pays[1][3])
 {
-    int zone = 0;
-    int result = 0;
+    int zone = -1;
     int i = 0;
     int j = 0;
-    char *pays[1] = {"FR"};
     const char *zonePays[7][12] = {
     { "BE", "LU", "", "", "", "", "", "", "", "", "", "" },
     { "CH", "DE", "NL", "", "", "", "", "", "", "", "", "" },
@@ -52,20 +50,25 @@ int calcZone()
     { "SA", "", "", "", "", "", "", "", "", "", "", "" }
     };
 
-    lire(pays, 3);
-
 
     for (i = 0; i < 7; i++)
     {
         for (j = 0; j < 12; j++)
         {
-            if(strncmp(pays[0], zonePays[i][j], 2) == 0)
+            if (strncmp(pays[0], zonePays[i][j], 2) == 0)
                 zone = i;
         }
     }
+    if (zone <= -1)
+    {
+        printf("Erreur de saisie de la zone, veuillez ressaisir\n");
+    }
 
-
-    printf("%d", zone);
 
     return zone;
+}
+
+int calcTarif()
+{
+    // inserer code ici
 }

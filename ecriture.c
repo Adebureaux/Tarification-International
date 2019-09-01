@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 
 void viderBuffer()
@@ -23,9 +24,14 @@ void viderBuffer()
 long lire(char *chaine, int longueur)
 {
     char *positionEntree = NULL;
-
+    int i = 0;
+        
+        
     if (fgets(chaine, longueur, stdin) != NULL)
     {
+        for (i = 0; chaine[i]; ++i) // Remplace chaque carractère miniscule par une majuscule.
+            chaine[i] = (toupper(chaine[i]));
+        
         positionEntree = strchr(chaine, '\n');
         if (positionEntree != NULL)
         {
