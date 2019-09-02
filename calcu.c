@@ -5,7 +5,7 @@
 
 int calcPoids(long nbrColis)
 {
-    int poids = 0, compteur = 1;
+    int tranchePoids = 0, poids = 0, compteur = 1;
     double longu = 0, larg = 0, haut = 0, poidsVolume = 0, poidsReel = 0;
     do
     {
@@ -32,7 +32,63 @@ int calcPoids(long nbrColis)
             poids = poidsReel + poids;
         }
     } while (nbrColis >= compteur);
-    return poids;
+
+
+    // Definition de la tranche de poids
+    if (poids >= 0 && poids <= 2)
+    {
+        tranchePoids = 0;
+    }
+    else if (poids >= 3 && poids <= 5)
+    {
+        tranchePoids = 1;
+    }
+    else if (poids >= 6 && poids <= 10)
+    {
+        tranchePoids = 2;
+    }
+    else if (poids >= 11 && poids <= 15)
+    {
+        tranchePoids = 3;
+    }
+    else if (poids >= 16 && poids <= 20)
+    {
+        tranchePoids = 4;
+    }
+    else if (poids >= 21 && poids <= 30)
+    {
+        tranchePoids = 5;
+    }
+    else if (poids >= 31 && poids <= 40)
+    {
+        tranchePoids = 6;
+    }
+    else if (poids >= 41 && poids <= 50)
+    {
+        tranchePoids = 7;
+    }
+    else if (poids >= 51 && poids <= 60)
+    {
+        tranchePoids = 8;
+    }
+    else if (poids >= 61 && poids <= 70)
+    {
+        tranchePoids = 9;
+    }
+    else if (poids >= 71 && poids <= 80)
+    {
+        tranchePoids = 10;
+    }
+    else if (poids >= 81 && poids <= 90)
+    {
+        tranchePoids = 11;
+    }
+    else if (poids >= 91 && poids <= 100)
+    {
+        tranchePoids = 12;
+    }
+
+    return tranchePoids;
 }
 
 int calcZone(char pays[1][3])
@@ -70,5 +126,5 @@ int calcZone(char pays[1][3])
 
 int calcTarif()
 {
-    // inserer code ici
+
 }

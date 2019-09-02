@@ -26,9 +26,7 @@ int main()
     lire(*pays, 3);
     zone = calcZone(pays);
     } while (zone <= -1);
-    
-    
-    printf("Zone %d\n", zone);
+    printf("Zone %d\n", zone+1);
 
     printf("Nombre de colis : ");
     conv_nbrColis = lire(nbrColis, 3);
