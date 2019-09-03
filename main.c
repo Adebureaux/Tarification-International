@@ -11,8 +11,8 @@ int main(int argc, char *argv[])
     char run[1];
     long conv_run = 0;
     long conv_nbrColis = 0;
+    long poidsSup = 0;
     int poidsTranche = 0;
-    int poidsSup = 0;
     int zone = 0;
     int ch = 0, ad = 0;
 
@@ -41,7 +41,7 @@ do
     // Tranche poids et poids supplementaire
     printf("Nombre de colis : ");
     conv_nbrColis = lire(nbrColis, 3);
-    poidsTranche = calcPoids(conv_nbrColis,  &poidsSup);
+    poidsTranche = calcPoids(conv_nbrColis, &poidsSup);
 
     // Calcul du tarif
     prixBase = calcTarif(poidsTranche, poidsSup, zone, conv_nbrColis);

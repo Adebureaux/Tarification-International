@@ -3,7 +3,7 @@
 #include <string.h>
 #include "ecriture.h"
 
-int calcPoids(long nbrColis, int *poidsSup)
+int calcPoids(long conv_nbrColis, long *poidsSup)
 {
     int tranchePoids = 0, compteur = 1;
     char longu[1];
@@ -14,7 +14,7 @@ int calcPoids(long nbrColis, int *poidsSup)
     double poidsVolume = 0, poidsReel = 0;
     do
     {
-        if (nbrColis > 1)
+        if (conv_nbrColis > 1)
         {
             printf("\nColis %d\n", compteur);
         }
@@ -36,7 +36,7 @@ int calcPoids(long nbrColis, int *poidsSup)
         {
             poids = poidsReel + poids;
         }
-    } while (nbrColis >= compteur);
+    } while (conv_nbrColis >= compteur);
 
 
     // Definition de la tranche de poids
@@ -141,7 +141,7 @@ int calcZone(char pays[1][3], int *ch, int *ad)
     return zone;
 }
 
-double calcTarif(int poidsTranche, int poidsSup, int zone, long nbrColis)
+double calcTarif(int poidsTranche, long poidsSup, int zone, long nbrColis)
 {
     double prixBase = 0;
     const double carbu = 1.09;
