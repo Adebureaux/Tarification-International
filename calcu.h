@@ -2,7 +2,7 @@
 #define CALCU_H_INCLUDED
 
 int calcPoids(long conv_nbrColis, long *poidsSup);
-int calcZone(char pays[1][3], int *ch, int *ad);
-double calcTarif(int poidsTranche, long poidsSup, int zone, long nbrColis);
+int calcZone(char pays[1][3], int *fraisDossier);
+double calcTarif(int poidsTranche, long poidsSup, int zone, long nbrColis, int fraisDossier);
 
 #endif // CALCU_H_INCLUDED

@@ -5,12 +5,12 @@
 
 int calcPoids(long conv_nbrColis, long *poidsSup)
 {
-    int tranchePoids = 0, compteur = 1;
-    char longu[1];
-    char larg[1];
-    char haut[1];
-    char poid[1];
-    long conv_longu = 0, conv_larg = 0, conv_haut = 0, poids = 0;
+    int tranchePoids = 0;
+    char longu[4];
+    char larg[4];
+    char haut[4];
+    char poid[4];
+    long conv_longu = 0, conv_larg = 0, conv_haut = 0, poids = 0, compteur = 1;
     double poidsVolume = 0, poidsReel = 0;
     do
     {
@@ -30,11 +30,11 @@ int calcPoids(long conv_nbrColis, long *poidsSup)
         poidsVolume = (((conv_longu/100.00)*(conv_larg/100.00)*(conv_haut/100.00))*166.00);
         if (poidsReel < poidsVolume)
         {
-            poids = poidsVolume + poids;
+            poidsReel += poidsVolume;
         }
         else
         {
-            poids = poidsReel + poids;
+            poids += poidsReel;
         }
     } while (conv_nbrColis >= compteur);
 
@@ -100,7 +100,7 @@ int calcPoids(long conv_nbrColis, long *poidsSup)
     return tranchePoids;
 }
 
-int calcZone(char pays[1][3], int *ch, int *ad)
+int calcZone(char pays[1][3], int *fraisDossier)
 {
     int zone = -1;
     int i = 0;
@@ -125,11 +125,15 @@ int calcZone(char pays[1][3], int *ch, int *ad)
                 zone = i;
                 if (j == 0 && i == 1)
                 {
-                    *ch = 1;
+                    *fraisDossier = 1;
                 }
                 else if (j == 0 && i == 2)
                 {
-                    *ad = 1;
+                    *fraisDossier = 1;
+                }
+                else
+                {
+                    *fraisDossier = 0;
                 }
             }
         }
@@ -141,11 +145,12 @@ int calcZone(char pays[1][3], int *ch, int *ad)
     return zone;
 }
 
-double calcTarif(int poidsTranche, long poidsSup, int zone, long nbrColis)
+double calcTarif(int poidsTranche, long poidsSup, int zone, long nbrColis, int fraisDossier)
 {
     double prixBase = 0;
     const double carbu = 1.09;
     const double kSup[7] = { 2.60, 2.38, 3.58, 7.16, 9.47, 11.89, 14.27 };
+    const double tableFD[2] = { 0, 76.87 };
     const double tablePrix[13][7] = {
     { 25.69, 37.77, 56.19, 122.26, 176.87, 191.94, 224.75 },
     { 28.53, 40.09, 59.91, 129.38, 186.37, 203.85, 239.04 },
@@ -162,7 +167,7 @@ double calcTarif(int poidsTranche, long poidsSup, int zone, long nbrColis)
     { 241.75, 255.91, 385.69, 777.09, 1047.98, 1283.54, 1534.51 }
     };
 
-    prixBase = (tablePrix[poidsTranche][zone] + (poidsSup * kSup[zone]) + (nbrColis * 0.20) + 12.78) * carbu;
+    prixBase = (tablePrix[poidsTranche][zone] + (poidsSup * kSup[zone]) + (nbrColis * 0.20) + tableFD[fraisDossier] + 12.78) * carbu;
 
     return prixBase;
 }
