@@ -9,14 +9,14 @@ int calcPoids(long conv_nbrColis, long *poidsSup)
     char longu[4];
     char larg[4];
     char haut[4];
-    char poid[4];
-    long conv_longu = 0, conv_larg = 0, conv_haut = 0, poids = 0, compteur = 1;
+    char poids[4];
+    long conv_longu = 0, conv_larg = 0, conv_haut = 0, conv_poids = 0, compteur = 1;
     double poidsVolume = 0, poidsReel = 0;
     do
     {
         if (conv_nbrColis > 1)
         {
-            printf("\nColis %d\n", compteur);
+            printf("\nColis %ld\n", compteur);
         }
         printf("Longueur (cm) : ");
         conv_longu = lire(longu, 4);
@@ -25,77 +25,76 @@ int calcPoids(long conv_nbrColis, long *poidsSup)
         printf("Hauteur (cm) : ");
         conv_haut = lire(haut, 4);
         printf("Poids (kg) : ");
-        poids = lire(poid, 4);
+        conv_poids = lire(poids, 4);
         compteur++;
         poidsVolume = (((conv_longu/100.00)*(conv_larg/100.00)*(conv_haut/100.00))*166.00);
-        if (poidsReel < poidsVolume)
+        if (conv_poids < poidsVolume)
         {
             poidsReel += poidsVolume;
         }
         else
         {
-            poids += poidsReel;
+            poidsReel += conv_poids;
         }
     } while (conv_nbrColis >= compteur);
 
-
     // Definition de la tranche de poids
-    if (poids >= 0 && poids <= 2)
+    if (poidsReel >= 0 && poidsReel <= 2)
     {
         tranchePoids = 0;
     }
-    else if (poids >= 3 && poids <= 5)
+    else if (poidsReel >= 3 && poidsReel <= 5)
     {
         tranchePoids = 1;
     }
-    else if (poids >= 6 && poids <= 10)
+    else if (poidsReel >= 6 && poidsReel <= 10)
     {
         tranchePoids = 2;
     }
-    else if (poids >= 11 && poids <= 15)
+    else if (poidsReel >= 11 && poidsReel <= 15)
     {
         tranchePoids = 3;
     }
-    else if (poids >= 16 && poids <= 20)
+    else if (poidsReel >= 16 && poidsReel <= 20)
     {
         tranchePoids = 4;
     }
-    else if (poids >= 21 && poids <= 30)
+    else if (poidsReel >= 21 && poidsReel <= 30)
     {
         tranchePoids = 5;
     }
-    else if (poids >= 31 && poids <= 40)
+    else if (poidsReel >= 31 && poidsReel <= 40)
     {
         tranchePoids = 6;
     }
-    else if (poids >= 41 && poids <= 50)
+    else if (poidsReel >= 41 && poidsReel <= 50)
     {
         tranchePoids = 7;
     }
-    else if (poids >= 51 && poids <= 60)
+    else if (poidsReel >= 51 && poidsReel <= 60)
     {
         tranchePoids = 8;
     }
-    else if (poids >= 61 && poids <= 70)
+    else if (poidsReel >= 61 && poidsReel <= 70)
     {
         tranchePoids = 9;
     }
-    else if (poids >= 71 && poids <= 80)
+    else if (poidsReel >= 71 && poidsReel <= 80)
     {
         tranchePoids = 10;
     }
-    else if (poids >= 81 && poids <= 90)
+    else if (poidsReel >= 81 && poidsReel <= 90)
     {
         tranchePoids = 11;
     }
-    else if (poids >= 91 && poids <= 100)
+    else if (poidsReel >= 91 && poidsReel <= 100)
     {
         tranchePoids = 12;
     }
     else
     {
         tranchePoids = 12;
-        *poidsSup = poids - 100;
+        *poidsSup = poidsReel - 100;
     }
     return tranchePoids;
 }
