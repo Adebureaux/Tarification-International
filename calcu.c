@@ -165,6 +165,7 @@ double calcTarif(int poidsTranche, long poidsSup, int zone, long nbrColis, int f
     { 209.62, 216.30, 326.00, 658.37, 889.65, 1085.66, 1297.05 },
     { 241.75, 255.91, 385.69, 777.09, 1047.98, 1283.54, 1534.51 }
     };
+    
 
     prixBase = (tablePrix[poidsTranche][zone] + (poidsSup * kSup[zone]) + (nbrColis * 0.20) + tableFD[fraisDossier] + 12.78) * carbu;
 
